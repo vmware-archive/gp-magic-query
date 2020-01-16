@@ -2,8 +2,8 @@
 Demo and training of Greenplum multi-modal analytics
 
 # TO-DOs
-[Ivan] GPDB setup guide
-[Bharath] Install GPtext guide
+- [Ivan] GPDB setup guide
+- [Bharath] Install GPtext guide
 [Venky] Data set 
 [Divya] Load data set
 Narrative that includes - GPText, Graph, Geospatial, Time series, Python, Soundex
