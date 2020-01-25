@@ -18,6 +18,11 @@ sudo yum install lsof
 - Install either OpenJDK or Oracle JDK v8 on all hosts (if you're deploying Greenplum using the above method, this should come pre-installed)
 
 1. Download the latest GPText binary from [PivNet](https://network.pivotal.io/)
+```
+wget https://github.com/pivotal-cf/pivnet-cli/releases/download/v1.0.0/pivnet-linux-amd64-1.0.0
+chmod 755 ./pivnet-linux-amd64-1.0.0
+./pivnet-linux-amd64-1.0.0 download-product-files --product-slug='pivotal-gpdb' --release-version='6.3.0' --product-file-id=579663
+```
 
 2. Use `scp` to move the file over and `tar` to unpack GPText.
 ```
