@@ -21,6 +21,7 @@ sudo yum install lsof
 ```
 wget https://github.com/pivotal-cf/pivnet-cli/releases/download/v1.0.0/pivnet-linux-amd64-1.0.0
 chmod 755 ./pivnet-linux-amd64-1.0.0
+./pivnet-linux-amd64-1.0.0 login --api-token='my-api-token' 
 ./pivnet-linux-amd64-1.0.0 download-product-files --product-slug='pivotal-gpdb' --release-version='6.3.0' --product-file-id=579663
 ```
 
