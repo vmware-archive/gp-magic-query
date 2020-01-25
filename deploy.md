@@ -11,7 +11,7 @@ Pre-Requisites:
 ```
 sudo yum install netcat lsof
 ```
-- Validate Java is installed
+- Validate Java 8 is installed
 ```
 java -version
 ```
@@ -28,7 +28,7 @@ chmod 755 ./pivnet-linux-amd64-1.0.0
 
 2. If necessary, grant execute permission to the GPText binary. For example:
 ```
-chmod +x /home/gpadmin/greenplum-text-<version>-<platform>.bin
+chmod +x /home/gpadmin/greenplum-text-3.4.0-rhel7_x86_64.bin
 ```
 
 3. Create the following directories and change ownership to gpadmin on *ALL* hosts:
