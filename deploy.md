@@ -7,8 +7,14 @@
 # How to install GPText ontop of the Google Marketplace offering
 Pre-Requisites:
 
-- Install netcat on all hosts 
+- Install netcat on all hosts
+```
+sudo yum install netcat
+```
 - Install lsof on all hosts
+```
+sudo yum install lsof
+```
 - Install either OpenJDK or Oracle JDK v8 on all hosts (if you're deploying Greenplum using the above method, this should come pre-installed)
 
 1. Download the latest GPText binary from [PivNet](https://network.pivotal.io/)
