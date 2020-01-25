@@ -96,7 +96,7 @@ ZOO_CLUSTER="BINDING"
 #### The valid hosts number should be 3, 5 or 7.
 #### It's available only using the binding zookeeper.
 #### REQUIRED WHEN USING BINDING. Else not available.
-declare -a ZOO_HOSTS=(mdw sdw1 sdw2)
+declare -a ZOO_HOSTS=(mdw mdw mdw)
 
 #### If using the binding GPText, please set the zookeeper data directory.
 #### It's available only using the binding zookeeper.
