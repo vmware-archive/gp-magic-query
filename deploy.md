@@ -7,19 +7,19 @@
 # How to install GPText ontop of the Google Marketplace offering
 Pre-Requisites:
 
-- Install netcat on all hosts
+- Install netcat and lsof on all hosts
 ```
-sudo yum install netcat
+sudo yum install netcat lsof
 ```
-- Install lsof on all hosts
+- Validate Java is installed
 ```
-sudo yum install lsof
+java -version
 ```
-- Install either OpenJDK or Oracle JDK v8 on all hosts (if you're deploying Greenplum using the above method, this should come pre-installed)
 
-
-1. Download the latest GPText binary from [PivNet](https://network.pivotal.io/)
+# Download the latest GPText binary from [PivNet](https://network.pivotal.io/)
+# Get your api token by logging into Pivnet
 ```
+sudo su - gpadmin
 wget https://github.com/pivotal-cf/pivnet-cli/releases/download/v1.0.0/pivnet-linux-amd64-1.0.0
 chmod 755 ./pivnet-linux-amd64-1.0.0
 ./pivnet-linux-amd64-1.0.0 login --api-token='my-api-token' 
