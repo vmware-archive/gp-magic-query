@@ -43,17 +43,6 @@ tar xzvf greenplum-text-3.4.0-rhel7_x86_64.tar.gz
 chmod +x /home/gpadmin/greenplum-text-3.4.0-rhel7_x86_64.bin
 ```
 
-# Create the following directories and change ownership to gpadmin on *ALL* hosts:
-
-```
-mkdir /usr/local/greenplum-text-3.4.0
-mkdir /usr/local/greenplum-solr
-chown gpadmin:gpadmin /usr/local/greenplum-text-3.4.0
-chmod 775 /usr/local/greenplum-text-3.4.0
-chown gpadmin:gpadmin /usr/local/greenplum-solr
-chmod 775 /usr/local/greenplum-solr
-```
-
 # Modify the `gptext_install_config` file to set the parameters for installation. See the following link for details. [Set GPText Installation Parameters](http://gptext.docs.pivotal.io/340/topics/installing.html#topic1__edit_config)
 
 ```
