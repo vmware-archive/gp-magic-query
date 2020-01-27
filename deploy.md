@@ -26,8 +26,9 @@ chmod 755 ./pivnet-linux-amd64-1.0.0
 ./pivnet-linux-amd64-1.0.0 download-product-files --product-slug='pivotal-gpdb' --release-version='6.3.0' --product-file-id=579663
 ```
 
-2. If necessary, grant execute permission to the GPText binary. For example:
+2. Extract and grant execute permission to the GPText binary. For example:
 ```
+tar xzvf greenplum-text-3.4.0-rhel7_x86_64.tar.gz
 chmod +x /home/gpadmin/greenplum-text-3.4.0-rhel7_x86_64.bin
 ```
 
