@@ -69,7 +69,7 @@ ZOO_MAX_PORT_LIMIT=12188
 
 # Source the greenplum-text_path.sh
 ```
-source /usr/local/greenplum-text-3.4.0/
+source /usr/local/greenplum-text-3.4.0/greenplum-text_path.sh
 ```
 
 # Install the gptext schema into the `gpadmin` database
