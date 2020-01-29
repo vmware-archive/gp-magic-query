@@ -1,0 +1,20 @@
+DATABASE: twitter
+USER: gpadmin
+HOST: mdw
+PORT: 6432
+KAFKA:
+   INPUT:
+     SOURCE:
+        BROKERS: 34.94.239.70:9092
+        TOPIC: apple
+     COLUMNS:
+        - NAME: jdata
+          TYPE: json
+     FORMAT: json
+     ERROR_LIMIT: 10
+   OUTPUT:
+     TABLE: tweet_data
+
+   COMMIT:
+     MAX_ROW: 1000
+     MINIMAL_INTERVAL: 5000
