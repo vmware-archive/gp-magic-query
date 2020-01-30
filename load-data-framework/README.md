@@ -120,13 +120,23 @@ create table tweets(
   created_at date,
   coordinates json,
   tweet_text text,
+  full_text text,
   in_reply_to_status_id text,
   in_reply_to_user_id text,
+  in_reply_to_screen_name text,
   user_id text,
   user_name text,
   user_location text,
-  retweeted_count int,
-  retweeted boolean
+  hashtags json ,
+  user_mentions json ,
+  quote_count int,
+  reply_count int,
+  retweet_count int,
+  favorite_count int,
+  favorited boolean,
+  retweeted boolean,
+  possibly_sensitive boolean,
+  lang text
 );
 ```
 * Start gpss
@@ -143,17 +153,58 @@ gpsscli load load_twitter_data_loc.yaml
 
 ```
 insert into tweets
-select jdata->>'id',(jdata->>'created_at')::date, 
+select jdata->>'id',
+(jdata->>'created_at')::date, 
 jdata#>'{coordinates}',
- jdata->>'text',
- jdata->>'in_reply_to_status_id',
- jdata->>'in_reply_to_user_id',
- (jdata#>'{user,id}')::text,
- (jdata#>'{user,name}')::text,
-  (jdata#>'{user,location}')::text,
+jdata->>'text',
+(jdata#>'{extended_tweet,full_text}')::text,
+jdata->>'in_reply_to_status_id',
+jdata->>'in_reply_to_user_id',
+jdata->>'in_reply_to_screen_name',
+(jdata#>'{user,id}')::text,
+(jdata#>'{user,name}')::text,
+(jdata#>'{user,location}')::text,
+(jdata#>'{entities,hashtags}'),
+(jdata#>'{entities,user_mentions}'),
+(jdata->>'quote_count')::int,
+(jdata->>'reply_count')::int,
+(jdata->>'retweet_count')::int,
+(jdata->>'favorite_count')::int,
+(jdata->>'favorited')::boolean,
+(jdata->>'retweeted')::boolean,
+(jdata->>'possibly_sensitive')::boolean,
+(jdata->>'lang')::text
+from tweet_data;
+```
 
-  (jdata->>'retweet_count')::int,
- (jdata->>'retweeted')::boolean
- 
-from tweet_data where (jdata#>'{coordinates}')::text != 'null';
+# Troubleshooting
+
+These are some queries that help look at the imported data
+
+```
+# Does the text contain the word apple?
+select count(*)
+from tweet_data where (jdata->>'text')::text like '%apple%';
+```
+
+```
+# Connections between in_reply_to_user_id and userid
+select  count(*) from tweet_data where (jdata#>'{user,id}')::text in (select distinct jdata->>'in_reply_to_user_id' from tweet_data);
+```
+
+```
+# Connections between in_reply_to_status_id and status_id
+select  count(*) from tweet_data where (jdata->>'id')::text in (select distinct jdata->>'in_reply_to_status_id' from tweet_data);
+```
+
+
+```
+# Tweets with coordinates
+select  count(*) from tweet_data where (jdata#>'{coordinates}')::text != 'null';
+```
+
+```
+# Distinct Tweets 
+select  count (distinct jdata->>'id') from tweet_data ;
+```
 
