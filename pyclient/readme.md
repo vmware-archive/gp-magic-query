@@ -15,4 +15,19 @@ https://docs.python-guide.org/starting/install3/osx/
 $ python3
 >>> import psycopg2
 ```
+### Install psycopg2 on your client machine
+```
+pip3 install psycopg2-binary
+```
+### Setup Env Variables to your Twitter DB
+```
+export PGHOST=_______
+export PGPASSWORD=________
+export PGUSER=__________
+```
 
+### Now you can run the sample programs in this directory
+```
+git clone https://github.com/greenplum-db/gp-magic-query
+cd gp-magic-query/pyclient
+```
