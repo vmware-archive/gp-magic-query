@@ -6,7 +6,13 @@ First lets get our python setup
 ```
 python --version
 ```
+### Install Python3 on your client machine
 If its not installed follow steps for your platform, here are steps for MacOSX
 https://docs.python-guide.org/starting/install3/osx/
 
+### Verify psycopg2 is installed on your client machine
+```
+$ python3
+>>> import psycopg2
+```
 
