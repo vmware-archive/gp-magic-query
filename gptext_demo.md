@@ -13,7 +13,7 @@ select * from gptext.create_index('public', 'tweets', 'id', 'tweet_text');
 # Change the Index Configurations
 On Command Line, run:
 ```
-gptext-config -i twitter.public.tweets -f managed-schema edit
+gptext-config edit -i twitter.public.tweets -f managed-schema
 ```
 
 In the managed-schema XML file, search for "tweet_text" and "full_text" and change the value of `text_intl` to `text_sm`
