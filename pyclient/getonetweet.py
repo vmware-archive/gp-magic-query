@@ -6,10 +6,9 @@ try:
     connection = psycopg2.connect(database = "twitter")
 
     cursor = connection.cursor()
-    cursor.execute("SELECT * from tweets")
-
+    cursor.execute("SELECT * from tweets limit 1")
     record = cursor.fetchone()
-    print("VERSION: ", record,"\n")
+    print("TWEET: ", record,"\n")
 
 except (Exception, psycopg2.Error) as error :
     print ("Error while connecting to PostgreSQL", error)
@@ -17,4 +16,3 @@ finally:
     if(connection):
         cursor.close()
         connection.close()
-        print("PostgreSQL connection is closed")
