@@ -89,7 +89,7 @@ ORDER BY score desc;
 
 ## Boolean Query
 ```
-SELCET a.id, a.tweet_text, q.score FROM tweets a, 
+SELECT a.id, a.tweet_text, q.score FROM tweets a, 
 gptext.search(TABLE(SELECT 1 SCATTER BY 1), 'twitter.public.tweets', 
 'apple AND (air OR pro) AND hashtags:ipad', null, null) q 
 WHERE q.id::int8=a.id 
