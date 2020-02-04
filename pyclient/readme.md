@@ -30,4 +30,5 @@ export PGUSER=__________
 ```
 git clone https://github.com/greenplum-db/gp-magic-query
 cd gp-magic-query/pyclient
+python3 ./getonetweet.py 
 ```
