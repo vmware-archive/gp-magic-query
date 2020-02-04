@@ -10,15 +10,17 @@ python --version
 If its not installed follow steps for your platform, here are steps for MacOSX
 https://docs.python-guide.org/starting/install3/osx/
 
+### Install psycopg2 on your client machine
+```
+pip3 install psycopg2-binary
+```
+
 ### Verify psycopg2 is installed on your client machine
 ```
 $ python3
 >>> import psycopg2
 ```
-### Install psycopg2 on your client machine
-```
-pip3 install psycopg2-binary
-```
+
 ### Setup Env Variables to your Twitter DB
 ```
 export PGHOST=_______
