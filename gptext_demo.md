@@ -1,6 +1,7 @@
-# first load gptext into the twitter db and enter the twitter db
+# first load gptext into the twitter db and enter the twitter db and make sure gptext is started
 ```
 gptext-installsql twitter
+gptext-start
 psql twitter
 ```
 
