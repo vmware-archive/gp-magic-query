@@ -20,7 +20,7 @@ In the managed-schema XML file, search for "tweet_text" and "full_text" and chan
 
 # Index the Tweets
 ```
-select * from gptext.index(TABLE(SELECT * FROM new_tweets), 'twitter.public.new_tweets');
+select * from gptext.index(TABLE(SELECT * FROM tweets), 'twitter.public.tweets');
 ```
 
 # Commit the Index
