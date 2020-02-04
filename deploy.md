@@ -7,7 +7,7 @@
 # Pre-Requisites:
 - Install netcat and lsof on all hosts
 ```
-sudo yum install netcat lsof
+sudo yum install lsof
 ```
 - Validate Java 8 is installed
 ```
