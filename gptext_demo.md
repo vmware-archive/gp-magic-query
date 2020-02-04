@@ -1,3 +1,9 @@
+# first load gptext into the twitter db and enter the twitter db
+```
+gptext-installsql twitter
+psql twitter
+```
+
 # Create Index on tweet table
 ```
 select * from gptext.create_index('public', 'tweets', 'id', 'tweet_text');
