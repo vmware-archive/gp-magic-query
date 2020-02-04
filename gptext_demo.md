@@ -25,7 +25,7 @@ select * from gptext.index(TABLE(SELECT * FROM tweets), 'twitter.public.tweets')
 
 # Commit the Index
 ```
-select * from gptext.commit_index('twitter.public.new_tweets');
+select * from gptext.commit_index('twitter.public.tweets');
 ```
 
 Notes:
