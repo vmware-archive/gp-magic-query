@@ -14,3 +14,7 @@ Time Series Queries
 Geospatial Analytics
 Graph Analytics with Greenplum
 Putting it all together
+
+# Course Materials
+* [Deploy Greenplum Env](https://github.com/greenplum-db/gp-magic-query/blob/master/deploy.md)
+* [Load Twitter Data](https://github.com/greenplum-db/gp-magic-query/blob/master/load_sample_data.md)
