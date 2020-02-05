@@ -19,4 +19,4 @@ AND lang = 'en';
 
 \x
 
-select * from tweet_sent_vader order by negative_sentiment limit 10;
+select * from tweet_sent_vader order by negative_sentiment desc limit 10;
