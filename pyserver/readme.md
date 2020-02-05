@@ -11,9 +11,9 @@ psql -f py_cat_func.sql twitter
 ```
 
 ### Word Split Demo
-Let's take a naive approach and just call basic python split function on tweet text and see the output
-It will take as input TEXT and as output TEXT[] which is an array of TEXT items
-We will store the output in a table so we can easily browse the output
+* Let's take a naive approach and just call basic python split function on tweet text and see the output.  
+* It will take as input TEXT and as output TEXT[] which is an array of TEXT items.  
+* We will store the output in a table so we can easily browse the output
 
 ```
 psql -f tweet_word_array.sql twitter
