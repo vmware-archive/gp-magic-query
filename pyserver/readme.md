@@ -46,3 +46,6 @@ psql -f tweet_get_pos_result.sql twitter
 ### Sentiment analysis with vader model in NLTK
 * We will apply the varder model in NLTK to attribute 'negativity' to each tweet
 * Then we will return tweets in order of negativity
+```
+psql -f tweet_sent_vader_check.sql twitter
+```
