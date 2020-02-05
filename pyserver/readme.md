@@ -35,3 +35,11 @@ psql -f tweet_token_array.sql twitter
 ```
 psql -f tweet_get_nnp.sql twitter
 ```
+
+### More NLTK part of speech tagging
+* Let's get three new columns for each tweet, one for each an array of nouns, verbs, and adjectives in the tweet
+* Lets do searching for **hate** and **love** in the the verbs of the tweet
+```
+psql -f tweet_get_pos_result.sql twitter
+```
+
