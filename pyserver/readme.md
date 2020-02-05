@@ -18,3 +18,12 @@ psql -f py_cat_func.sql twitter
 ```
 psql -f tweet_word_array.sql twitter
 ```
+
+# NLTK Demo for tokenize
+* Python word split is not language aware
+* Let's replace word split with NLTK's tokenize function
+* Then we get proper tokens with punctuation removed from words etc
+
+```
+psql -f tweet_token_array.sql twitter
+```
