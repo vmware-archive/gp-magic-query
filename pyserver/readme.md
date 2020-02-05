@@ -27,3 +27,11 @@ psql -f tweet_word_array.sql twitter
 ```
 psql -f tweet_token_array.sql twitter
 ```
+
+### NLTK Demo for part of speech tagging
+* We can split out an array of words, let's do it based on Proper Nouns in this demo 
+* Then we can search in the array of Proper Nouns for specific values
+* We will lower case the values to make searching easier when stored in a temp table
+```
+psql -f tweet_get_nnp.sql twitter
+```
