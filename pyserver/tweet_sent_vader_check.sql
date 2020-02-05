@@ -8,6 +8,7 @@ AS $$
   return sid.polarity_scores(tweet)['neg']
 $$ LANGUAGE plpythonu;
 
+DROP TABLE IF EXISTS tweet_sent_vader;
 CREATE TABLE tweet_sent_vader AS
 SELECT full_text, 
   reply_count, retweet_count, favorite_count,
