@@ -22,6 +22,8 @@ $ python3
 ```
 
 ### Setup Env Variables to your Twitter DB
+* If running a GCP cluster, PGHOST and PGPASSWORD are available in the deployment manager in the Marketplace
+* PGUSER is the user connecting to Greenplum. (e.g. `gpadmin`)
 ```
 export PGHOST=_______
 export PGPASSWORD=________
