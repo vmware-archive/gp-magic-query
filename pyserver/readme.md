@@ -19,6 +19,9 @@ CREATE FUNCTION dummyPython() RETURNS text AS $$
 # container: plc_python_shared
 return 'hello from Python'
 $$ LANGUAGE plcontainer;
+```
+
+```
 SELECT * FROM dummyPython();
 ```
 
