@@ -39,3 +39,13 @@ python3 ./get_colnames.py
 python3 ./get_tweettext_samples.py
 python3 ./gettweet4lang
 ```
+
+### Excercise 1
+* Write a python program that reads a text file with two words per line
+    * LANG WORD
+    * en Apple
+    * es gracias
+* Write a query for each language and word in the file and for each word do the following
+    * Create a new table called excersie1__WORD
+    * INSERT into the new table all tweets that contain the word and the language match
+    * print out to the terminal 3 tweets from the new table with just the full_text of the tweet, the user_name and the location of the tweet
