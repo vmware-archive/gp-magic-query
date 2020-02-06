@@ -4,6 +4,11 @@ psql twitter
 create language plpythonu;
 ```
 
+### install madlib from the shell as we will need it later 
+```
+$GPHOME/madlib/bin/madpack install -s madlib -p greenplum -c gpadmin@mdw:6432/twitter
+``` 
+
 ### Demo of a basic pl/python funcion
 This function shows how take 2 columns as input, use python to modify the inputs and return a 3 projected output column
 ```
