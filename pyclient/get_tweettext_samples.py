@@ -7,7 +7,7 @@ try:
     connection = psycopg2.connect(database = "twitter")
 
     cursor = connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    cursor.execute("SELECT * from tweets where full_text is not null and lang = 'en' limit 100")
+    cursor.execute("SELECT * from tweets where full_text is not null and lang = 'en' limit 5")
 
     for record in cursor:
          print("TWEET: ", record['full_text'])
