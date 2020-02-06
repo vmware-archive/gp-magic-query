@@ -10,12 +10,12 @@ create language plpythonu;
 ```
 
 * Now verify plpythonu is installed and working
-```
+```sql
 CREATE FUNCTION pyhelloworld () RETURNS text AS $$
   return "Hello World from PL/Python"
 $$ LANGUAGE plpythonu;
 ```
-```
+```sql
 SELECT pyhelloworld();
 ```
 
@@ -29,14 +29,14 @@ export PGDATABASE=twitter
 gpoptional
 ```
 * then login to the twitter db and test plcontainer is working
-```
+```sql
 CREATE FUNCTION dummyPython() RETURNS text AS $$
 # container: plc_python_shared
 return 'hello from Python'
 $$ LANGUAGE plcontainer;
 ```
 
-```
+```sql
 SELECT * FROM dummyPython();
 ```
 
@@ -94,6 +94,6 @@ psql -f tweet_sent_vader_check.sql twitter
 ### In order to do some machine learning on tweets lets observe some basic statistics from one of our derived tables
 * we will use the madlib summary functin
 * Note madlib was already installed at the top of this lesson
-```
+```sql
 SELECT * FROM madlib.summary( 'tweet_sent_vader', 'tweet_sent_vader_summary');
 ```
