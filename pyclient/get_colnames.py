@@ -7,11 +7,9 @@ try:
     connection = psycopg2.connect(database = "twitter")
 
     cursor = connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    cursor.execute("SELECT * from tweets limit 1")
-    record = cursor.fetchone()
-    print("TWEET: ", record,"\n")
+    cursor.execute("SELECT * from tweets where lang='en' limit 1")
 
-    print("COLUMNS: ", record,"\n")
+    print("COLUMNS: ")
     for desc in cursor.description:
         print(desc[0])
 
