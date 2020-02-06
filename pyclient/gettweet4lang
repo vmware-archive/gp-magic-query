@@ -17,7 +17,7 @@ try:
     cursor = connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
     # parameterized query in psycopg2 follows pep-0249 standard
-    cursor.execute("SELECT * from tweets where full_text is not null and lang = %(langvar)s limit 100", 
+    cursor.execute("SELECT * from tweets where full_text is not null and lang = %(langvar)s limit 5", 
                    {'langvar':args.lang})
 
     for record in cursor:
