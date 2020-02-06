@@ -4,6 +4,24 @@ psql twitter
 create language plpythonu;
 ```
 
+### Setup plcontainer on the twitter database
+* first add this to your .bashrc 
+```
+export PGDATABASE=twitter
+```
+* then run gpoptional and reinstall plcontainer
+```
+gpoptional
+```
+* then login to the twitter db and test plcontainer is working
+```
+CREATE FUNCTION dummyPython() RETURNS text AS $$
+# container: plc_python_shared
+return 'hello from Python'
+$$ LANGUAGE plcontainer;
+SELECT * FROM dummyPython();
+```
+
 ### install madlib from the shell as we will need it later 
 ```
 $GPHOME/madlib/bin/madpack install -s madlib -p greenplum -c gpadmin@mdw:6432/twitter
