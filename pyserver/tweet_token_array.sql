@@ -9,6 +9,7 @@ $$ LANGUAGE plpythonu;
 
 \x
 
+DROP TABLE IF EXISTS tweet_word_tokens_result;
 CREATE TABLE tweet_word_tokens_result AS
 SELECT full_text, tweet_token_array(full_text)
 FROM tweets where full_text is not null
