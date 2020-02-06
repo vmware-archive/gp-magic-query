@@ -1,7 +1,22 @@
 ### first create the pythonu language so we can use and demo it in the functions provided in this module
+* Enter twitter db
 ```
 psql twitter
+```
+
+* Install pl/python
+```
 create language plpythonu;
+```
+
+* Now verify plpythonu is installed and working
+```
+CREATE FUNCTION pyhelloworld () RETURNS text AS $$
+  return "Hello World from PL/Python"
+$$ LANGUAGE plpythonu;
+```
+```
+SELECT pyhelloworld();
 ```
 
 ### Setup plcontainer on the twitter database
