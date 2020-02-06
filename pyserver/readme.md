@@ -54,3 +54,10 @@ psql -f tweet_get_pos_result.sql twitter
 ```
 psql -f tweet_sent_vader_check.sql twitter
 ```
+
+### In order to do some machine learning on tweets lets observe some basic statistics from one of our derived tables
+* we will use the madlib summary functin
+* Note madlib was already installed at the top of this lesson
+```
+SELECT * FROM madlib.summary( 'tweet_sent_vader', 'tweet_sent_vader_summary');
+```
