@@ -11,6 +11,18 @@ $PGMANAGER twitter install
 SELECT PostGIS_Version();
 ```
 
+### Basic Geometry Data Types Samples
+```sql
+DROP TABLE IF EXISTS vector1;
+CREATE TABLE vector1 (geom geomtry);
+INSERT INTO vector1 VALUES ('POINT(2,5)');
+INSERT INTO vector1 VALUES ('POINT(3,7)');
+INSERT INTO vector1 VALUES ('POINT(4,9)');
+```
+```sql 
+SELECT geom, ST_AsText(geom) pdata FROM vector1; 
+```
+
 ### First lets look at what data we have that has non-null geo coordindates
 ```sql
 select * from tweets where json_typeof(coordinates) <> 'null' limit 100;
