@@ -15,7 +15,8 @@ LIMIT 100;
 ```sql
 DROP TABLE IF EXISTS geotest;
 CREATE TABLE geotest AS
-SELECT *, ST_GeomFromGeoJSON(coordinates::text) geom 
+SELECT *, 
+ST_SetSRID( ST_GeomFromGeoJSON(coordinates::text), 4326) geom 
 FROM tweets 
 WHERE json_typeof(coordinates) <> 'null';
 ```
