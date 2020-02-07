@@ -28,6 +28,11 @@ SELECT geom, ST_AsText(geom) pdata FROM vector1;
 select ST_AsText( ST_MakeLine( array_agg(geom) ) ) from vector1;
 ```
 
+* Run a calculation on the geometry type
+```sql
+select ST_Length( ST_MakeLine( array_agg(geom) ) ) from vector1;
+```
+
 ### First lets look at what data we have that has non-null geo coordindates
 ```sql
 select * from tweets where json_typeof(coordinates) <> 'null' limit 100;
