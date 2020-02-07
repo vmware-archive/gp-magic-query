@@ -20,3 +20,9 @@ ST_SetSRID( ST_GeomFromGeoJSON(coordinates::text), 4326) geom
 FROM tweets 
 WHERE json_typeof(coordinates) <> 'null';
 ```
+
+```sql
+\x 
+
+SELECT * FROM geotest
+LIMIT 3;
