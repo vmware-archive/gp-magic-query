@@ -2,6 +2,8 @@
 
 ### Lets look at what data we have that has non-null geo coordindates
 ```sql
+\x
+
 SELECT * FROM tweets WHERE 
 json_typeof(coordinates) <> 'null' 
 LIMIT 100;
