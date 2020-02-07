@@ -43,7 +43,8 @@ CREATE TABLE vector1 (geom geometry);
 INSERT INTO vector1 VALUES 
   ('POLYGON((0 0, 1 0, 1 1, 0 1, 0 0)) ');
 INSERT INTO vector1 VALUES 
-  ('POLYGON((0 0, 10 0, 10 10, 0 10, 0 0),(1 1, 1 2, 2 2, 2 1, 1 1)) ');
+  ('POLYGON((0 0, 10 0, 10 10, 0 10, 0 0),
+  (1 1, 1 2, 2 2, 2 1, 1 1)) ');
 ```
 
 ```sql
