@@ -53,4 +53,4 @@ FROM vector1;
 ```
 
 ### Postgis is setup now let's go to the Twitter Data Set analysis
-
+[Twitter Geo Analysis](https://github.com/greenplum-db/gp-magic-query/blob/master/geo/twitter.md)
