@@ -20,17 +20,20 @@ INSERT INTO vector1 VALUES ('POINT(3 7)');
 INSERT INTO vector1 VALUES ('POINT(4 9)');
 ```
 ```sql 
-SELECT geom, ST_AsText(geom) pdata FROM vector1; 
+SELECT geom, ST_AsText(geom) pdata 
+FROM vector1; 
 ```
 
 * Create a line from points
 ```sql
-SELECT ST_AsText( ST_MakeLine( array_agg(geom) ) ) FROM vector1;
+SELECT ST_AsText( ST_MakeLine( array_agg(geom) ) ) 
+FROM vector1;
 ```
 
 * Run a calculation on the geometry type
 ```sql
-SELECT ST_Length( ST_MakeLine( array_agg(geom) ) ) FROM vector1;
+SELECT ST_Length( ST_MakeLine( array_agg(geom) ) ) 
+FROM vector1;
 ```
 
 ### First lets look at what data we have that has non-null geo coordindates
