@@ -4,7 +4,8 @@
 ```sql
 \x
 
-SELECT id, created_at, full_text, user_name, user_location 
+SELECT id, created_at, full_text, user_name, 
+  user_location, coordinates
 FROM tweets WHERE 
 json_typeof(coordinates) <> 'null' 
 LIMIT 100;
