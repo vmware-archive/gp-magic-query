@@ -97,3 +97,14 @@ psql -f tweet_sent_vader_check.sql twitter
 ```sql
 SELECT * FROM madlib.summary( 'tweet_sent_vader', 'tweet_sent_vader_summary');
 ```
+
+### Exercise 1: Convert to Uppercase
+* Use python to take input the *full_text* of a tweet and output the same tweet in all caps letters
+
+### Exercise 2: Read the documentation from NLTK and write a UDF using a different NLTK method than was used here
+* Some suggested methods: nltk.util.ngrams , try to break the text of a tweet into trigrams
+
+### Exercise 3: Try to use the https://spacy.io/ library in a UDF as a replacement for NLTK
+* Modify tweet_get_pos_result.sql to do the same work but with the spacy library
+
+
