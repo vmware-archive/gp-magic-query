@@ -23,6 +23,11 @@ INSERT INTO vector1 VALUES ('POINT(4 9)');
 SELECT geom, ST_AsText(geom) pdata FROM vector1; 
 ```
 
+* Create a line from points
+```sql
+select ST_AsText( ST_MakeLine( array_agg(geom) ) ) from vector1;
+```
+
 ### First lets look at what data we have that has non-null geo coordindates
 ```sql
 select * from tweets where json_typeof(coordinates) <> 'null' limit 100;
