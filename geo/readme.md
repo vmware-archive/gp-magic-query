@@ -15,9 +15,9 @@ SELECT PostGIS_Version();
 ```sql
 DROP TABLE IF EXISTS vector1;
 CREATE TABLE vector1 (geom geometry);
-INSERT INTO vector1 VALUES ('POINT(2,5)');
-INSERT INTO vector1 VALUES ('POINT(3,7)');
-INSERT INTO vector1 VALUES ('POINT(4,9)');
+INSERT INTO vector1 VALUES ('POINT(2 5)');
+INSERT INTO vector1 VALUES ('POINT(3 7)');
+INSERT INTO vector1 VALUES ('POINT(4 9)');
 ```
 ```sql 
 SELECT geom, ST_AsText(geom) pdata FROM vector1; 
