@@ -69,7 +69,7 @@ ORDER BY score desc;
 ```sql
 SELECT a.id, a.tweet_text, q.score FROM tweets a, 
 gptext.search(TABLE(SELECT 1 SCATTER BY 1), 'twitter.public.tweets', 
-'apple AND hashtags:ipad', null, 'rows=10') q
+'apple AND hashtags:ipad', null, 'rows=3') q
 WHERE q.id::int8=a.id 
 ORDER BY score desc;
 ```
