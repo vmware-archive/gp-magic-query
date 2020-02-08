@@ -35,3 +35,8 @@ unzip cb_2018_us_state_500k.zip
 shp2pgsql -s 4269 -D cb_2018_us_state_500k.shp usstates > usstates.sql
 psql -f usstates.sql twitter
 ```
+
+```sql
+SELECT name, ST_GeometryType(geom)
+FROM usstates ORDER by 1;
+```
