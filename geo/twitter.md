@@ -62,3 +62,11 @@ ON ST_Contains(usstates.geom,
   ST_Transform(geotest.geom,4269))
 GROUP by usstates.name ORDER by 1 desc;
 ```
+
+### Rank States by size
+```sql
+SELECT usstates.name, 
+  ST_Area(usstates.geom) area
+FROM usstates 
+ORDER by 2 desc;
+```
