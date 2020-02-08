@@ -28,6 +28,6 @@ SELECT * FROM geotest
 LIMIT 3;
 
 ### We want to get US State Boundary data from the internet and use it with the tweets
-```bash
+```
 wget https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_us_state_500k.zip
 ```
