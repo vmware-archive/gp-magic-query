@@ -57,7 +57,8 @@ WHERE usstates.name = 'Texas';
 ### Count tweets in each state
 ```sql
 SELECT COUNT(usstates.name), usstates.name
-FROM geotestnew JOIN usstates 
-ON ST_Contains(usstates.geom, geotestnew.newgeo)
+FROM geotest JOIN usstates 
+ON ST_Contains(usstates.geom, 
+  ST_Transform(geotest.geom,4269))
 GROUP by usstates.name ORDER by 1 desc;
 ```
