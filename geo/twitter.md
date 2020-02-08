@@ -42,16 +42,18 @@ FROM usstates ORDER by 1;
 ```
 
 ### Filter only Tweets from Texas
+```sql
 SELECT geotestnew.coordinates, 
 geotestnew.full_text,
 usstates.name 
 from geotestnew JOIN usstates 
 ON ST_Contains(usstates.geom, geotestnew.newgeo)
 WHERE usstates.name = 'Texas';
-
+```
 ### Count tweets in each state
+```sql
 SELECT COUNT(usstates.name), usstates.name
 FROM geotestnew JOIN usstates 
 ON ST_Contains(usstates.geom, geotestnew.newgeo)
 GROUP by usstates.name ORDER by 1 desc;
-
+```
