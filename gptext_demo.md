@@ -99,6 +99,34 @@ WHERE q.id::int8=a.id
 ORDER BY score desc;
 ```
 
+# Unified Query Parser
+## Boolean and Wildcard Query
+```
+SELECT a.id, a.tweet_text, q.score FROM tweets a,
+gptext.search(TABLE(SELECT 1 SCATTER BY 1), 'twitter.public.tweets',
+'{!gptextqp} render* AND apple AND (air OR pro) AND hashtags:ipad', null, null) q
+WHERE q.id::int8=a.id
+ORDER BY score desc;
+```
+
+## Boolean and Surround Query
+**Unordered Search:**
+```
+SELECT a.id, a.tweet_text, q.score FROM tweets a,
+gptext.search(TABLE(SELECT 1 SCATTER BY 1), 'twitter.public.tweets',
+'{!gptextqp} apple AND (air OR pro) AND (work 6N ipad) hashtags:ipad', null, null) q
+WHERE q.id::int8=a.id
+ORDER BY score desc;
+```
+
+**Ordered Search:**
+```
+SELECT a.id, a.tweet_text, q.score FROM tweets a,
+gptext.search(TABLE(SELECT 1 SCATTER BY 1), 'twitter.public.tweets',
+'{!gptextqp} apple AND (air OR pro) AND (work 6W ipad) hashtags:ipad', null, null) q
+WHERE q.id::int8=a.id
+ORDER BY score desc;
+```
 # Named Entity Recognition With GPText
 ## Enable Terms on the tweet_text field for the index created above
 ```sql
