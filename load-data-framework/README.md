@@ -4,7 +4,7 @@
 * Create a twitter developer app and create keys. More here: https://apps.twitter.com/.
 
 ## Kafka server
-* Create a kafka server on GCP. Take the Google kafka deployment from marketplace. SCP into it using gcloud command.
+* Create a kafka server on GCP. Take the Google kafka deployment from marketplace (https://console.cloud.google.com/marketplace/details/click-to-deploy-images/kafka). SCP into it using gcloud command.
 ```
 gcloud beta compute --project <YOUR_PROJECT_ID> ssh --zone "us-west2-b" "kafka-1-vm
 ```
@@ -53,7 +53,7 @@ Credits: https://www.bmc.com/blogs/working-streaming-twitter-data-using-kafka/
 
 ## Greenplum cluster
 
-* Create Greenplum cluster from marketplace
+* Create Greenplum cluster from marketplace: https://console.cloud.google.com/marketplace/details/pivotal-public/pivotal-greenplum-byol
 ```
 sudo su - gpadmin
 ```
