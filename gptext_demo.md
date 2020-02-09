@@ -127,6 +127,20 @@ gptext.search(TABLE(SELECT 1 SCATTER BY 1), 'twitter.public.tweets',
 WHERE q.id::int8=a.id
 ORDER BY score desc;
 ```
+
+# Faceted Queries
+## Faceted Field Search
+```sql
+SELECT * FROM gptext.faceted_field_search('twitter.public.tweets', 'Apple', null, '{lang}', -1, 1);
+```
+
+## Faceted Query Search
+```sql
+SELECT * FROM gptext.faceted_query_search(
+'twitter.public.tweets', '*:*', null, 
+'{apple AND -(accessory OR bid) AND hashtags:ipad, Apple}');
+```
+
 # Named Entity Recognition With GPText
 ## Enable Terms on the tweet_text field for the index created above
 ```sql
