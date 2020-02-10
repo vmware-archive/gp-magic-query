@@ -44,6 +44,8 @@ FROM offer;
 ```
 
 ### Create Array Aggregration method to pack arrays of integers into a 2d array
+* array_agg is a function that comes with Greenplum (and PG) it combines single values into an array
+* but how to combine arrays, into arrays of arrays, we need to create or own aggregrate function for it
 ```sql
 CREATE or replace FUNCTION array_append_2d(integer[][], integer[])
     RETURNS integer[][]
