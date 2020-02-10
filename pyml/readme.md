@@ -26,3 +26,19 @@ INSERT into offer values(8, 2, 4, 7, 0);
 INSERT into offer values(9, 2, 4, 7, 0);
 INSERT into offer values(10, 2, 6, 7, 1);
 ```
+
+### Create a Feature Vector of inputs for each experiment
+* The *userid* and *offerid* are labels for this data point
+* the *asktimes* and *askbackoffdays* are inputs to the model
+* The *bought_offer* value is the results we are training to predict
+
+```sql
+DROP TABLE IF EXISTS offers_as_feature_vec;
+CREATE TABLE offers_as_feature_vec AS
+SELECT
+   userid, offerid, 
+   ARRAY[asktimes, askbackoffdays],
+   bought_offer
+   AS feature_vec
+FROM offer;
+```
