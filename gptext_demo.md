@@ -197,7 +197,7 @@ SELECT * FROM gptext.commit_index('twitter.public.tweets');
 SELECT tweets.id, gptext.highlight(tweets.tweet_text, 'tweet_text', hs) 
 AS tweet_text, s.score FROM tweets, 
 gptext.search(table(select 1 scatter by 1), 'twitter.public.tweets', 
-'{!gptextqp} _ner_organization', null, 
+'{!gptextqp} _ner_person', null, 
 'hl=true&hl.fl=tweet_text&rows=10&sort=score desc') s 
 WHERE tweets.id = s.id::int8 ORDER BY s.score desc;
 ```
