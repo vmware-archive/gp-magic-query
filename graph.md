@@ -5,15 +5,26 @@
 ## Create Edges Table
 **NOTE: In this case, we create default equal edge weights. MADLib is able to handle edge weights in its calculations.**
 ```sql
-CREATE TABLE tweets_edges AS SELECT id, user_id, unnest(mentioned_user_ids) AS edges FROM tweets;
-ALTER TABLE tweets_edges ADD COLUMN weight INTEGER DEFAULT 1;
+CREATE TABLE tweets_edges 
+AS SELECT id, user_id, unnest(mentioned_user_ids) 
+AS edges FROM tweets;
+```
+
+```sql
+ALTER TABLE tweets_edges 
+ADD COLUMN weight INTEGER DEFAULT 1;
 ```
 
 ## Create Vertices Table
 **NOTE: We need to rename the user_id column as it has a conflict with the user_id column in tweets_edges. This will be addressed in the next MADLib Release.**
 ```sql
-CREATE TABLE tweets_vertices AS SELECT DISTINCT user_id FROM tweets_edges;
-ALTER TABLE tweets_vertices RENAME COLUMN user_id TO users;
+CREATE TABLE tweets_vertices 
+AS SELECT DISTINCT user_id FROM tweets_edges;
+```
+
+```sql
+ALTER TABLE tweets_vertices 
+RENAME COLUMN user_id TO users;
 ```
 
 # PageRank Algorithm
@@ -37,6 +48,22 @@ SELECT COUNT(*) FROM tweets_edges WHERE edges=103314561;
 SELECT COUNT(*) FROM tweets_edges WHERE edges=1284715483;
 SELECT COUNT(*) FROM tweets_edges WHERE edges=349069296;
 SELECT COUNT(*) FROM tweets_edges WHERE edges=1189521372;
+```
+
+# Single Source Shortest Path
+**See all the shortest paths (if available) from a single source vertex to all other vertices.**
+```sql
+SELECT madlib.graph_sssp(
+'tweets_vertices', 
+'users', 
+'tweets_edges', 
+'src=user_id,dest=edges', 
+'1189521372', 
+'sssp_tweet');
+```
+**To see all paths by ascending weight**
+```sql
+SELECT * FROM sssp_tweet ORDER BY weight ASC LIMIT 10;
 ```
 
 # Graph All-Pairs Shortest Path
