@@ -147,7 +147,7 @@ SELECT * FROM gptext.faceted_query_search(
 SELECT * FROM gptext.enable_terms('twitter.public.tweets', 'tweet_text');
 ```
 
-**NOTE: If you'd like to view the terms, you can run the following:
+**NOTE: If you'd like to view the terms, you can run the following:**
 ```sql
 SELECT * FROM gptext.terms('twitter.public.tweets', 'tweet_text', '*', null);
 ```
@@ -210,6 +210,11 @@ gptext.search(table(select 1 scatter by 1), 'twitter.public.tweets',
 '{!gptextqp} _ner_organization AND apple', null, 
 'hl=true&hl.fl=tweet_text&rows=10&sort=score desc') s 
 WHERE tweets.id = s.id::int8 ORDER BY s.score desc;
+```
+
+**To See the NER terms (in this case, limited to one document):**
+```sql
+SELECT * FROM gptext.ner_terms('twitter.public.tweets', 'tweet_text', 'id:1223950414019801089', null);
 ```
 
 Notes:
