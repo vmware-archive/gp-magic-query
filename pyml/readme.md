@@ -37,7 +37,7 @@ DROP TABLE IF EXISTS offers_as_feature_vec;
 CREATE TABLE offers_as_feature_vec AS
 SELECT
    userid, offerid, 
-   ARRAY[asktimes, askbackoffdays],
+   ARRAY[asktimes, askbackoffdays] features,
    bought_offer
    AS feature_vec
 FROM offer;
