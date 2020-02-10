@@ -42,3 +42,6 @@ SELECT
    AS feature_vec
 FROM offer;
 ```
+
+### Create Array Aggregration method to pack arrays into an array
+
