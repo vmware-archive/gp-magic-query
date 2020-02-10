@@ -147,6 +147,11 @@ SELECT * FROM gptext.faceted_query_search(
 SELECT * FROM gptext.enable_terms('twitter.public.tweets', 'tweet_text');
 ```
 
+**NOTE: If you'd like to view the terms, you can run the following:
+```sql
+SELECT * FROM gptext.terms('twitter.public.tweets', 'tweet_text', '*', null);
+```
+
 ## Update the index configuration
 ```sql
 gptext-config edit -i twitter.public.tweets -f managed-schema
@@ -189,12 +194,22 @@ SELECT * FROM gptext.commit_index('twitter.public.tweets');
 
 * Searching for any organization present and recognized by the OpenNLP Analyzer Chain in the fields
 ```sql
-SELECT tweets.id, gptext.highlight(tweets.tweet_text, 'tweet_text', hs) AS tweet_text, s.score FROM tweets, gptext.search(table(select 1 scatter by 1), 'twitter.public.tweets', '{!gptextqp} _ner_organization', null, 'hl=true&hl.fl=tweet_text&rows=10&sort=score desc') s WHERE tweets.id = s.id::int8 ORDER BY s.score desc;
+SELECT tweets.id, gptext.highlight(tweets.tweet_text, 'tweet_text', hs) 
+AS tweet_text, s.score FROM tweets, 
+gptext.search(table(select 1 scatter by 1), 'twitter.public.tweets', 
+'{!gptextqp} _ner_organization', null, 
+'hl=true&hl.fl=tweet_text&rows=10&sort=score desc') s 
+WHERE tweets.id = s.id::int8 ORDER BY s.score desc;
 ```
 
 * Searching for ones specific to Apple
 ```sql
-SELECT tweets.id, gptext.highlight(tweets.tweet_text, 'tweet_text', hs) AS tweet_text, s.score FROM tweets, gptext.search(table(select 1 scatter by 1), 'twitter.public.tweets', '{!gptextqp} _ner_organization AND apple', null, 'hl=true&hl.fl=tweet_text&rows=10&sort=score desc') s WHERE tweets.id = s.id::int8 ORDER BY s.score desc;
+SELECT tweets.id, gptext.highlight(tweets.tweet_text, 'tweet_text', hs) 
+AS tweet_text, s.score FROM tweets, 
+gptext.search(table(select 1 scatter by 1), 'twitter.public.tweets', 
+'{!gptextqp} _ner_organization AND apple', null, 
+'hl=true&hl.fl=tweet_text&rows=10&sort=score desc') s 
+WHERE tweets.id = s.id::int8 ORDER BY s.score desc;
 ```
 
 Notes:
