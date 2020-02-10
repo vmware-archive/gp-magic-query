@@ -26,12 +26,17 @@ SELECT madlib.pagerank(
 'pagerank_tweets');
 ```
 
+## See the top 10 vertices by influence
+```sql
+SELECT * FROM pagerank_tweets ORDER BY pagerank DESC LIMIT 10;
+```
+
 ## You can confirm by viewing the number of edges present at each of the top vertices
 ```
-select count(*) from tweets_edges where edges=103314561;
-select count(*) from tweets_edges where edges=1284715483;
-select count(*) from tweets_edges where edges=349069296;
-select count(*) from tweets_edges where edges=1189521372;
+SELECT COUNT(*) FROM tweets_edges WHERE edges=103314561;
+SELECT COUNT(*) FROM tweets_edges WHERE edges=1284715483;
+SELECT COUNT(*) FROM tweets_edges WHERE edges=349069296;
+SELECT COUNT(*) FROM tweets_edges WHERE edges=1189521372;
 ```
 
 # Graph All-Pairs Shortest Path
