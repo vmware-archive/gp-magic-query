@@ -26,4 +26,3 @@ AND lang = 'en';
 
 select full_text from tweet_get_nnp_result where 'apple' = ANY(tweet_get_nnp) limit 10;
 select full_text from tweet_get_nnp_result where 'jobs' = ANY(tweet_get_nnp) limit 10;
-select full_text from tweet_get_nnp_result where 'trump' = ANY(tweet_get_nnp) limit 10;
