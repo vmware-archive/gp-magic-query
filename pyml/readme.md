@@ -110,7 +110,12 @@ FROM trained_model_by_user;
 
 ### Generate some new experiments and pack the data for usage in prediction
 * The new experiments feature array contains **number of asks** and ***backoff interval**
-* 
+* Get a list of unique users that we have models for
+* CROSS JOIN the users and the offers experiments to generate a list of experiments per user to run
+* Generated Schema:
+   * userid: user for the experiment
+   * features: the **number of asks** and ***backoff interval** packed into an array for experiment
+   
 ```sql
 DROP TABLE IF EXISTS offers_raw;
 CREATE TABLE offers_raw (features int[]);
