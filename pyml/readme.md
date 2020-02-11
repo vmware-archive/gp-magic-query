@@ -59,8 +59,17 @@ CREATE AGGREGATE array_agg_array(integer[])
 );
 ```
 ### Pack Data Per User In Arrays Format For Input to ML
-* offerid:          a unique id for this offer
-* userid:           which user was this offer made to
-* asktimes:         how may times was the offer sent to this user
-* askbackoffdays:   days between each time the email offer was sent to the user
-* bought_offer:     did the user finally buy the offer that was sent to them or not (1/0)
+* userid:           which user's features and results is this row of data for
+* features:         2-d array which is array of array of features representing each marketing offer
+* results:          array of results parallel to features with result 0/1 did did the user buy the offer
+
+```sql
+DROP TABLE IF EXISTS training_set1;
+CREATE TABLE training_set1 AS
+SELECT userid,
+       array_agg_array(features) features, 
+       array_agg(bought_offer) results
+FROM offers_as_feature_vec
+GROUP BY userid;
+```
+
