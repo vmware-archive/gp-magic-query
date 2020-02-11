@@ -138,3 +138,22 @@ CREATE TABLE offers_tests AS
 SELECT userid, features 
 FROM userlist, offers_raw;
 ```
+
+# Predict all test experiments for liklihood to BUY and rank by most likely
+
+* Function Input is the trained model for this user and the features of the experiment
+* Function Output is the liklihood to BUY
+```
+CREATE OR REPLACE FUNCTION
+        offer_predict_buy(serialized_model bytea, 
+                          features integer[])
+RETURNS float
+LANGUAGE plpythonu
+AS $$
+ import six
+ pickle = six.moves.cPickle
+ model = pickle.loads(serialized_model)
+ result = model.predict_proba([features])
+ return result[0, 1]
+$$;
+```
