@@ -143,7 +143,7 @@ FROM userlist, offers_raw;
 
 * Function Input is the trained model for this user and the features of the experiment
 * Function Output is the liklihood to BUY
-```
+```sql
 CREATE OR REPLACE FUNCTION
         offer_predict_buy(serialized_model bytea, 
                           features integer[])
