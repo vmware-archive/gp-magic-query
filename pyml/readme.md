@@ -107,3 +107,29 @@ SELECT serialized_on,
        substring(model::text from 0 for 50) 
 FROM trained_model_by_user;
 ```
+
+### Generate some new experiments and pack the data for usage in prediction
+* The new experiments feature array contains **number of asks** and ***backoff interval**
+* 
+```sql
+DROP TABLE IF EXISTS offers_raw;
+CREATE TABLE offers_raw (features int[]);
+insert into offers_raw values (ARRAY[1.0, 1.0]);
+insert into offers_raw values (ARRAY[2.0, 2.0]);
+insert into offers_raw values (ARRAY[3.0, 3.0]);
+insert into offers_raw values (ARRAY[4.0, 4.0]);
+insert into offers_raw values (ARRAY[5.0, 5.0]);
+insert into offers_raw values (ARRAY[6.0, 6.0]);
+insert into offers_raw values (ARRAY[7.0, 7.0]);
+insert into offers_raw values (ARRAY[8.0, 8.0]);
+insert into offers_raw values (ARRAY[9.0, 9.0]);
+
+DROP TABLE IF EXITS userlist;
+CREATE TABLE userlist AS
+SELECT DISTINCT userid from trained_model_by_user;
+
+DROP TABLE IF EXISTS offers_tests;
+CREATE TABLE offers_tests AS
+SELECT userid, features 
+FROM userlist, offers_raw;
+```
