@@ -1,5 +1,11 @@
 **In this section, we'll be using the mentioned_user_ids to run some graph algorithms and see relationships among various users.**
 
+# Install MADLib Schema into the Twitter Database
+```
+cd /usr/local/greenplum-db/madlib/bin/
+./madpack -p greenplum -c /twitter install
+```
+
 # Create Edges and Vertices tables from the original tweets table
 
 ## Create Edges Table
