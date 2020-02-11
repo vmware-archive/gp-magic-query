@@ -74,17 +74,34 @@ GROUP BY userid;
 ```
 
 ### Use scikit-learn to train a ML Model for each user
+* import the LogisticRegression class from scikit-learn
+* train the inputs against the outputs
+* Pickle the model to a binary output and return the model
+* Then execute the training function fo each user we have and store the model in result table
 ```sql
 CREATE OR REPLACE FUNCTION
   logreg_train(features integer[][], targets integer[])
 RETURNS bytea
 LANGUAGE plpythonu AS
 $$
-from sklearn.linear_model import LogisticRegression
-import six
-pickle = six.moves.cPickle
-logreg = LogisticRegression(solver='lbfgs')
-logreg.fit(features, targets)
-return pickle.dumps(logreg, protocol=2)
+  from sklearn.linear_model import LogisticRegression
+  import six
+  pickle = six.moves.cPickle
+  logreg = LogisticRegression(solver='lbfgs')
+  logreg.fit(features, targets)
+  return pickle.dumps(logreg, protocol=2)
 $$;
+```
+
+```sql
+DROP TABLE IF EXISTS trained_model_by_user;
+CREATE TABLE trained_model_by_user
+AS SELECT
+    userid,
+    logreg_train(features, results) as model,
+    now() as serialized_on
+FROM training_set1;
+
+SELECT serialized_on, length(model), model::text
+FROM trained_model_by_user;
 ```
