@@ -139,7 +139,7 @@ SELECT userid, features
 FROM userlist, offers_raw;
 ```
 
-# Predict all test experiments for liklihood to BUY and rank by most likely
+### Predict all test experiments for liklihood to BUY and rank by most likely
 
 * Function Input is the trained model for this user and the features of the experiment
 * Function Output is the liklihood to BUY
@@ -156,4 +156,14 @@ AS $$
  result = model.predict_proba([features])
  return result[0, 1]
 $$;
+```
+
+```sql
+SELECT offers_tests.userid,
+       offers_tests.features,
+       offer_predict_buy(trained_model_by_user.model,
+                         offers_tests.features)
+FROM trained_model_by_user, offers_tests
+WHERE trained_model_by_user.userid = offers_tests.userid
+ORDER BY 3 DESC;
 ```
