@@ -53,7 +53,7 @@ CREATE or replace FUNCTION array_append_2d(integer[][], integer[])
     AS 'select array_cat($1, ARRAY[$2])'
     IMMUTABLE
 ;
-CREATE ORDERED AGGREGATE array_agg_array(integer[])
+CREATE AGGREGATE array_agg_array(integer[])
 (
     SFUNC = array_append_2d,
     STYPE = integer[][]
