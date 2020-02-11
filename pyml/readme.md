@@ -73,3 +73,18 @@ FROM offers_as_feature_vec
 GROUP BY userid;
 ```
 
+### Use scikit-learn to train a ML Model for each user
+```sql
+CREATE OR REPLACE FUNCTION
+  logreg_train(features integer[][], targets integer[])
+RETURNS bytea
+LANGUAGE plpythonu AS
+$$
+from sklearn.linear_model import LogisticRegression
+import six
+pickle = six.moves.cPickle
+logreg = LogisticRegression(solver='lbfgs')
+logreg.fit(features, targets)
+return pickle.dumps(logreg, protocol=2)
+$$;
+```
