@@ -23,9 +23,13 @@ ADD COLUMN weight INTEGER DEFAULT 1;
 
 ## Create Vertices Table
 **NOTE: We need to rename the user_id column as it has a conflict with the user_id column in tweets_edges. This will be addressed in the next MADLib Release.**
+
 ```sql
 CREATE TABLE tweets_vertices 
-AS SELECT DISTINCT user_id FROM tweets_edges;
+AS SELECT DISTINCT(users) AS users 
+FROM (SELECT user_id AS users 
+FROM tweets_edges UNION SELECT edges 
+AS users FROM tweets_edges) a;
 ```
 
 ```sql
