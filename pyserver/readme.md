@@ -40,11 +40,6 @@ $$ LANGUAGE plcontainer;
 SELECT * FROM dummyPython();
 ```
 
-### install madlib from the shell as we will need it later 
-```
-$GPHOME/madlib/bin/madpack install -s madlib -p greenplum -c gpadmin@mdw:6432/twitter
-``` 
-
 ### Demo of a basic pl/python funcion
 This function shows how take 2 columns as input, use python to modify the inputs and return a 3 projected output column
 ```
@@ -89,13 +84,6 @@ psql -f tweet_get_pos_result.sql twitter
 * Then we will return tweets in order of negativity
 ```
 psql -f tweet_sent_vader_check.sql twitter
-```
-
-### In order to do some machine learning on tweets lets observe some basic statistics from one of our derived tables
-* we will use the madlib summary functin
-* Note madlib was already installed at the top of this lesson
-```sql
-SELECT * FROM madlib.summary( 'tweet_sent_vader', 'tweet_sent_vader_summary');
 ```
 
 ### Exercise 1: Convert to Uppercase
