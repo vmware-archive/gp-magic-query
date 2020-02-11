@@ -102,7 +102,8 @@ AS SELECT
     now() as serialized_on
 FROM training_set1;
 
-SELECT serialized_on, 
+SELECT userid,
+       serialized_on, 
        length(model), 
        substring(model::text from 0 for 50) 
 FROM trained_model_by_user;
