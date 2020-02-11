@@ -39,7 +39,6 @@ SELECT
    userid, offerid, 
    ARRAY[asktimes, askbackoffdays] features,
    bought_offer
-   AS feature_vec
 FROM offer;
 ```
 
@@ -59,4 +58,9 @@ CREATE AGGREGATE array_agg_array(integer[])
     STYPE = integer[][]
 );
 ```
-
+### Pack Data Per User In Arrays Format For Input to ML
+* offerid:          a unique id for this offer
+* userid:           which user was this offer made to
+* asktimes:         how may times was the offer sent to this user
+* askbackoffdays:   days between each time the email offer was sent to the user
+* bought_offer:     did the user finally buy the offer that was sent to them or not (1/0)
