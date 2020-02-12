@@ -17,7 +17,7 @@ AS edges FROM tweets;
 ```
 
 ```sql
-ALTER TABLE tweets_edges 
+ALTER TABLE tweets_edges
 ADD COLUMN weight INTEGER DEFAULT 1;
 ```
 
