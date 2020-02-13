@@ -28,14 +28,10 @@ SELECT * FROM geotest
 LIMIT 3;
 ```
 
-### We want to get US State Boundary data from the internet and use it with the tweets
-```bash
-wget https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_us_state_500k.zip
-unzip cb_2018_us_state_500k.zip
-shp2pgsql -s 4269 -D cb_2018_us_state_500k.shp usstates > usstates.sql
-psql -f usstates.sql twitter
-```
+### Load US States Data
+If not already loaded make sure to load the US States boundry data with [these steps](https://github.com/greenplum-db/gp-magic-query/blob/master/load-data-framework/load_geo_usstates.md)
 
+### Demot US State Boundary data 
 ```sql
 SELECT name, ST_GeometryType(geom)
 FROM usstates ORDER by 1;
