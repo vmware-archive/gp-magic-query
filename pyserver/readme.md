@@ -1,4 +1,13 @@
-### first create the pythonu language so we can use and demo it in the functions provided in this module
+### Install some needed python python dependacies into Python Distro
+* Run this with your python on the GP Server
+```python
+import nltk
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('vader_lexicon')
+```
+
+### create the pythonu language so we can use and demo it in the functions provided in this module
 * Enter twitter db
 ```
 psql twitter
