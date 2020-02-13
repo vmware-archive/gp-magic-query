@@ -9,3 +9,8 @@ createdb twitter
 psql twitter -f gp-magic-query/load-data-framework/twitter_data.sql
 ```
 
+# Update Data for Graph Queries
+Follow graph data [steps here](https://github.com/greenplum-db/gp-magic-query/blob/master/load-data-framework/updates_for_graph.sql)
+
+# Insert geospatial data
+Follow geospatial data load [steps here](https://github.com/greenplum-db/gp-magic-query/blob/master/load-data-framework/load_geo_usstates.md)
