@@ -17,7 +17,7 @@ Greenplum is a multimodal database that can be used for advanced analytics such 
 
 # Course Materials
 * [Deploy Greenplum Env](https://github.com/greenplum-db/gp-magic-query/blob/master/deploy.md)
-* [Load Twitter Data](https://github.com/greenplum-db/gp-magic-query/blob/master/load_sample_data.md)
+* [Load Twitter Data](https://github.com/greenplum-db/gp-magic-query/blob/master/load-data-framework/load_sample_data.md)
 * [Learn to Connect to GPDB with a Python Client](https://github.com/greenplum-db/gp-magic-query/tree/master/pyclient)
 * [Write Server Side Python User Defined Functions](https://github.com/greenplum-db/gp-magic-query/tree/master/pyserver)
 * [Text Search](https://github.com/greenplum-db/gp-magic-query/blob/master/gptext_demo.md)
