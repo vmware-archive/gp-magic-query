@@ -22,4 +22,4 @@ Follow the steps below to go through the course:
 1. [Load Twitter Data](https://github.com/greenplum-db/gp-magic-query/blob/master/load-data-framework/load_sample_data.md)
 1. [Learn to Connect to GPDB with a Python Client](https://github.com/greenplum-db/gp-magic-query/tree/master/pyclient)
 1. [Write Server Side Python User Defined Functions](https://github.com/greenplum-db/gp-magic-query/tree/master/pyserver)
-1. [Text Search](https://github.com/greenplum-db/gp-magic-query/blob/master/gptext_demo.md)
+1. [Text Search](https://github.com/greenplum-db/gp-magic-query/tree/master/text)
