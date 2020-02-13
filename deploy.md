@@ -4,8 +4,10 @@
 - Choose Greenplum 6 and all optional installs
 - Wait for the cluster to be deployed
 
-# Pre-Requisites:
-- Install netcat and lsof on all hosts
+# How to install GPText ontop of the Greenplum deploy
+
+### GPText Pre-Requisites:
+- Install lsof on all hosts
 ```
 sudo yum install lsof
 ```
@@ -27,8 +29,8 @@ chmod 775 /usr/local/greenplum-solr
 sudo bash ./dirs.sh
 ```
 
-# Download the latest GPText binary from [PivNet](https://network.pivotal.io/)
-# Get your api token by logging into Pivnet
+### Download GPText from PivNet
+* NOTE: Get your api token by logging into Pivnet and going under your profile to find the token string
 ```
 sudo su - gpadmin
 wget https://github.com/pivotal-cf/pivnet-cli/releases/download/v1.0.0/pivnet-linux-amd64-1.0.0
@@ -37,13 +39,15 @@ chmod 755 ./pivnet-linux-amd64-1.0.0
 ./pivnet-linux-amd64-1.0.0 download-product-files --product-slug='pivotal-gpdb' --release-version='6.3.0' --product-file-id=579663
 ```
 
-# Extract and grant execute permission to the GPText binary. For example:
+### Extract and grant execute permission to the GPText binary. For example:
 ```
 tar xzvf greenplum-text-3.4.0-rhel7_x86_64.tar.gz
 chmod +x /home/gpadmin/greenplum-text-3.4.0-rhel7_x86_64.bin
 ```
 
-# Modify the `gptext_install_config` file to set the parameters for installation. See the following link for details. [Set GPText Installation Parameters](http://gptext.docs.pivotal.io/340/topics/installing.html#topic1__edit_config)
+### Create Install Config File
+
+* Modify the `gptext_install_config` file to set the parameters for installation. See the following link for details. [Set GPText Installation Parameters](http://gptext.docs.pivotal.io/340/topics/installing.html#topic1__edit_config)
 
 ```
 # FILE NAME: gptext_install_config
@@ -60,19 +64,23 @@ ZOO_PORT_BASE=2188
 ZOO_MAX_PORT_LIMIT=12188
 ```
 
-# Run the GPText installation binary as `gpadmin` on the master server.
+### Run Install Command
+
+* Run the GPText installation binary as `gpadmin` on the master server.
+
 ```
 ./greenplum-text-3.4.0-rhel7_x86_64.bin -c gptext_install_config
 ```
 
-# Accept the Pivotal license agreement and respond to the installer’s prompts.
+* Accept the Pivotal license agreement and respond to the installer’s prompts.
 
-# Source the greenplum-text_path.sh
+### Source and install into the database being used
+* Source the greenplum-text_path.sh
 ```
 source /usr/local/greenplum-text-3.4.0/greenplum-text_path.sh
 ```
 
-# Install the gptext schema into the `gpadmin` database
+* Install the gptext schema into the `gpadmin` database
 ```
 gptext-installsql gpadmin
 ```
