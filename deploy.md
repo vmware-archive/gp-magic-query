@@ -30,6 +30,7 @@ sudo bash ./dirs.sh
 
 ### Download GPText from PivNet
 * NOTE: Get your api token by logging into Pivnet and going under your profile to find the token string
+* Pick get new refresh token and find the token string
 ```
 wget https://github.com/pivotal-cf/pivnet-cli/releases/download/v1.0.0/pivnet-linux-amd64-1.0.0
 chmod 755 ./pivnet-linux-amd64-1.0.0
