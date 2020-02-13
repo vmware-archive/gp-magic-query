@@ -37,7 +37,7 @@ cd gp-magic-query/pyclient
 python3 ./getonetweet.py 
 python3 ./get_colnames.py
 python3 ./get_tweettext_samples.py
-python3 ./gettweet4lang
+python3 ./gettweet4lang --lang es
 ```
 
 ### Excercise 1
