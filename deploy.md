@@ -11,10 +11,6 @@
 ```
 sudo yum install lsof
 ```
-- Validate Java 8 is installed
-```
-java -version
-```
 - put this text into dirs.sh 
 ```
 mkdir /usr/local/greenplum-text-3.4.0
