@@ -1,6 +1,10 @@
 ## Prerequisites
 
-Postgis should be installed prior to loading this data (See ../geo/readme)
+Postgis should be installed prior to loading this data:
+```
+PGMANAGER=`find $GPHOME -name postgis_manager.sh`
+$PGMANAGER twitter install
+```
 
 This is how you load the US States Boundry geospatial data into the demo
 
