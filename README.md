@@ -14,7 +14,7 @@ Follow the steps below to go through the course:
 1. [Learn to Connect to GPDB with a Python Client](https://github.com/greenplum-db/gp-magic-query/tree/master/pyclient)
 1. [Write Server Side Python User Defined Functions](https://github.com/greenplum-db/gp-magic-query/tree/master/pyserver)
 1. [Text Search](https://github.com/greenplum-db/gp-magic-query/tree/master/text)
-1. Time Series
+1. [Time Series](https://github.com/greenplum-db/gp-magic-query/tree/master/time_series)
 1. [Geospatial](https://github.com/greenplum-db/gp-magic-query/tree/master/geo)
 1. [Graph](https://github.com/greenplum-db/gp-magic-query/tree/master/graph)
 1. [Putting it all Together](https://github.com/greenplum-db/gp-magic-query/tree/master/putting-it-together)
