@@ -1,7 +1,15 @@
 This is the directory with all the data loading scripts, utilities, manuals and SQL files
 
-# Quick Data Load 
-You can load the pre-collected data with these simple [steps here](https://github.com/greenplum-db/gp-magic-query/blob/master/load-data-framework/load_sample_data.md)
+# Quick Data Load
+You can load the pre-collected data with these simple steps:
+
+```
+git clone https://github.com/greenplum-db/gp-magic-query.git
+
+createdb twitter
+psql twitter -f gp-magic-query/load-data-framework/twitter_data.sql
+```
+
 
 # Graph Queries Data Prep
 These [data files](https://github.com/greenplum-db/gp-magic-query/blob/master/load-data-framework/updates_for_graph.sql) can be used to prep the existing data for better graph queries, you should run it if doing the graph tests
