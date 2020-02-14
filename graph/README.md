@@ -34,7 +34,7 @@ AS users FROM tweets_edges) a;
 
 ```sql
 ALTER TABLE tweets_vertices 
-RENAME COLUMN user_id TO users;
+RENAME COLUMN users TO user_id;
 ```
 
 # PageRank Algorithm

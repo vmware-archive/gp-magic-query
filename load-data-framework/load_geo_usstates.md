@@ -1,3 +1,7 @@
+## Prerequisites
+
+Postgis should be installed prior to loading this data (See ../geo/readme)
+
 This is how you load the US States Boundry geospatial data into the demo
 
 ```

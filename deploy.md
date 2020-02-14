@@ -3,7 +3,12 @@
 - Click Launch
 - Choose Greenplum 6 and all optional installs
 - Wait for the cluster to be deployed
+- SSH to the cluster using gcloud command (More on gcloud: https://cloud.google.com/sdk/gcloud/)
 
+```
+gcloud beta compute --project "data-gpdb-ud" ssh --zone "us-east1-b" "divya-greenplum-byol-1-mdw"
+$ sudo su -  gpadmin
+```
 # How to install GPText ontop of the Greenplum deploy
 
 ### Login to master as gpadmin
