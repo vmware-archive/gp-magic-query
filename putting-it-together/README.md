@@ -107,7 +107,7 @@ psql -f usstates.sql twitter
 ```
 DROP TABLE user_locations;
 CREATE TABLE user_locations AS
-SELECT user_id, 
+SELECT DISTINCT user_id, 
 ST_SetSRID( ST_GeomFromGeoJSON(coordinates::text), 4326) geom 
 FROM tweets 
 WHERE json_typeof(coordinates) <> 'null';
@@ -143,14 +143,33 @@ SELECT * FROM user_influence ORDER BY pagerank DESC LIMIT 10;
 Now join all the tables and find any tweets coming from California state. Group them by the influence(page rank based on connected users), negative sentiment. Get the top 3 results.
 
 ```
-
-SELECT apple_tweets.user_id, apple_tweets.negative_sentiment,apple_tweets.tweet_text,
-rank() OVER (PARTITION BY apple_tweets.user_id ORDER BY retweet_count desc) as retweet_rank
+SELECT  apple_tweets.user_id, count(*) as tweet_count, sum(apple_tweets.negative_sentiment) as total_negative_sentiment, sum(user_influence.pagerank) as page_rank
 from user_locations INNER JOIN usstates ON ST_Contains(usstates.geom, ST_Transform(user_locations.geom, 4269))
 INNER JOIN apple_tweets on apple_tweets.user_id=user_locations.user_id
 INNER JOIN user_influence on user_influence.user_id=user_locations.user_id
-WHERE usstates.name = 'California' 
-ORDER BY user_influence.pagerank DESC, apple_tweets.negative_sentiment DESC
+WHERE usstates.name = 'California'
+GROUP BY apple_tweets.user_id
+ORDER BY page_rank DESC, total_negative_sentiment ASC
 LIMIT 3;
 ```
+
+See sample results:
+```
+-[ RECORD 1 ]------------+---------------------
+user_id                  | 708704803648438272
+tweet_count              | 17
+total_negative_sentiment | 0.199
+page_rank                | 0.000498728730686
+-[ RECORD 2 ]------------+---------------------
+user_id                  | 279505527
+tweet_count              | 4
+total_negative_sentiment | 0.332
+page_rank                | 0.00013729708585944
+-[ RECORD 3 ]------------+---------------------
+user_id                  | 2267898138
+tweet_count              | 1
+total_negative_sentiment | 0.075
+page_rank                | 5.26871862572015e-05
+
+
 
