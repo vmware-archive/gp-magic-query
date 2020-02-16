@@ -1,7 +1,7 @@
 In this section we will build a derived schema from the raw data and queries in all the sessions.  The purpose of this derived schema is for business analysts to have the data in a set of relational tables that is pre-processed and ready to answer multi-dimensional questions with simple SQL Join queries.
 
 ### Desired resultset
-Find top 25 twitter users that have the maximum influence on twitter and are located in California state who are tweeting with negative sentiment mentioning Apple products in the tweets
+Find top 3 twitter users that have the maximum influence on twitter and are located in California state who are tweeting with negative sentiment mentioning Apple products in the tweets
 
 
 ### Schema Description
@@ -80,6 +80,7 @@ AS $$
   return sid.polarity_scores(tweet)['neg']
 $$ LANGUAGE plpythonu;
 
+DROP TABLE apple_tweets;
 CREATE TABLE apple_tweets AS
 SELECT tweets.id, user_id, tweet_text,full_text, 
   reply_count, retweet_count, favorite_count,
@@ -88,7 +89,7 @@ SELECT tweets.id, user_id, tweet_text,full_text,
 FROM tweets, 
 gptext.search(table(select 1 scatter by 1), 'twitter.public.tweets', 
 '{!gptextqp} _ner_organization AND apple', null, 
-'hl=true&hl.fl=tweet_text&rows=10&sort=score desc') s 
+'hl=true&hl.fl=tweet_text&rows=50&sort=score desc') s 
 WHERE tweets.id = s.id::int8 AND s.score > 1;
 ;
 ```
@@ -104,6 +105,7 @@ psql -f usstates.sql twitter
 
 #### user_locations: Get users and their locations. The twitter coordinates have been converted to a Geometry
 ```
+DROP TABLE user_locations;
 CREATE TABLE user_locations AS
 SELECT user_id, 
 ST_SetSRID( ST_GeomFromGeoJSON(coordinates::text), 4326) geom 
@@ -113,15 +115,19 @@ WHERE json_typeof(coordinates) <> 'null';
 
 #### user_influence: Use graph analytics (page_rank) to get pagerank of users based on who other users they have mentioned
 ```
+DROP TABLE temp_tweets_edges ;
 CREATE TABLE temp_tweets_edges 
 AS SELECT id, user_id, unnest(mentioned_user_ids) AS edges, 1 as weight  FROM tweets;
 
+DROP TABLE temp_tweets_vertices; 
 CREATE TABLE temp_tweets_vertices 
 AS SELECT DISTINCT(user_id) AS user_id 
 FROM (SELECT user_id  
 FROM temp_tweets_edges UNION SELECT edges 
 AS users FROM temp_tweets_edges) a;
 
+DROP TABLE user_influence;
+DROP TABLE  user_influence_summary;
 SELECT madlib.pagerank(
 'temp_tweets_edges', 
 'user_id', 
@@ -134,7 +140,7 @@ SELECT * FROM user_influence ORDER BY pagerank DESC LIMIT 10;
 ```
 ### Business Queries
 
-Now join all the tables and find any tweets coming from California state. Arrange them by the influence(page rank based on connected users), negative sentiment and see where they rank with others based on number of retweets. Limit it to 25 results.
+Now join all the tables and find any tweets coming from California state. Group them by the influence(page rank based on connected users), negative sentiment. Get the top 3 results.
 
 ```
 
@@ -145,5 +151,6 @@ INNER JOIN apple_tweets on apple_tweets.user_id=user_locations.user_id
 INNER JOIN user_influence on user_influence.user_id=user_locations.user_id
 WHERE usstates.name = 'California' 
 ORDER BY user_influence.pagerank DESC, apple_tweets.negative_sentiment DESC
-LIMIT 25;
+LIMIT 3;
 ```
+

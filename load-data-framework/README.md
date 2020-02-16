@@ -11,10 +11,18 @@ psql twitter -f gp-magic-query/load-data-framework/twitter_data.sql
 ```
 
 
+For training and research purposes, we have enriched the data with some random updates. 
+
 # Graph Queries Data Prep
 These [data files](https://github.com/greenplum-db/gp-magic-query/blob/master/load-data-framework/updates_for_graph.sql) can be used to prep the existing data for better graph queries, you should run it if doing the graph tests
 ```
 psql -f gp-magic-query/load-data-framework/updates_for_graph.sql twitter
+```
+
+# Updates for putting it all together
+These [data files](https://github.com/greenplum-db/gp-magic-query/blob/master/load-data-framework/updates_for_graph.sql) can be used to prep the existing data for better graph queries, you should run it if doing the graph tests
+```
+psql -f gp-magic-query/load-data-framework/updates_for_putting_it_all_together.sql twitter
 ```
 
 # Geospatial Data Prep
