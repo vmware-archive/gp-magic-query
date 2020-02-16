@@ -31,3 +31,6 @@ We have additional data sets from US States from the census agency.  Load it wit
 # Recollect Twitter Data from Twitter
 This [framework scripts](https://github.com/greenplum-db/gp-magic-query/blob/master/load-data-framework/collect_from_source.md) are how you collect new Twitter Data
 You don't need to do this unless you want to experiment with the process
+
+# Get data from CSV in S3
+Sometimes data is not being streamed. Instead, a CSV file may be available in S3. If you need to query or bring this data to Greenplum, [check it out here](https://github.com/greenplum-db/gp-magic-query/blob/master/load-data-framework/collect_from_s3.md). 
