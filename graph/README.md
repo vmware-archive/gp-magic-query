@@ -98,3 +98,12 @@ SELECT madlib.weakly_connected_components(
 'src=user_id,dest=edges', 
 'wcc_tweets');
 ```
+
+## See the top components by number of vertices
+```sql
+SELECT component_id, count(*) 
+FROM wcc_tweets 
+GROUP BY component_id 
+ORDER BY count 
+DESC LIMIT 10;
+```
