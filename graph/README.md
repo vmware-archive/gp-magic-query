@@ -88,3 +88,13 @@ SELECT madlib.graph_apsp(
 'apsp_tweets');
 ```
 
+# Weakly Connected Components
+
+```sql
+SELECT madlib.weakly_connected_components(
+'tweets_vertices', 
+'enc_users', 
+'tweets_edges', 
+'src=user_id,dest=edges', 
+'wcc_tweets');
+```
