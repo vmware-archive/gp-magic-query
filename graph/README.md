@@ -57,7 +57,7 @@ SELECT * FROM pagerank_tweets ORDER BY pagerank DESC LIMIT 10;
 SELECT COUNT(*) FROM tweets_edges WHERE edges=103314561;
 SELECT COUNT(*) FROM tweets_edges WHERE edges=1284715483;
 SELECT COUNT(*) FROM tweets_edges WHERE edges=349069296;
-SELECT COUNT(*) FROM tweets_edges WHERE edges=1189521372;
+SELECT COUNT(*) FROM tweets_edges WHERE edges=459109589;
 ```
 
 # Single Source Shortest Path
