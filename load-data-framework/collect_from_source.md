@@ -153,7 +153,7 @@ gpsscli load load_twitter_data_loc.yaml
 
 ```
 insert into tweets
-select jdata->>'id',
+select (jdata->>'id')::bigint,
 (jdata->>'created_at')::date, 
 jdata#>'{coordinates}',
 jdata->>'text',
@@ -161,7 +161,7 @@ jdata->>'text',
 jdata->>'in_reply_to_status_id',
 jdata->>'in_reply_to_user_id',
 jdata->>'in_reply_to_screen_name',
-(jdata#>'{user,id}')::text,
+(jdata#>'{user,id}')::text::bigint,
 (jdata#>'{user,name}')::text,
 (jdata#>'{user,location}')::text,
 (jdata#>'{entities,hashtags}'),

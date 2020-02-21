@@ -35,11 +35,8 @@ update tweets set tweet_text = concat(E'Hey
 where id = '1222931089796235264' ;
 
 
-update tweets set tweet_text = concat(E'Hey 
-@SamsungMobileUS
-, I\'m really sorry. I made a horrible mistake back in November. I wanted to diversify myself and decided to get an 
-@Apple
- iPhone. I know. I\'m horrible. I really desperate want an S10+. I love you all. I can\'t wait until my contract is up. Btw, I love you.',tweet_text)
+update tweets set tweet_text = concat(E'My @Apple
+ iPhone 6s is horrible. Constantly experiencing interface freeze. No functions work. Can\'t launch any apps. Can\'t swipe in any direction to other screens or close other apps. Total #Crap',tweet_text)
 where id = '1224605549813227520' ;
 
 

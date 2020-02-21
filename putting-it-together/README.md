@@ -90,7 +90,7 @@ FROM tweets,
 gptext.search(table(select 1 scatter by 1), 'twitter.public.tweets', 
 '{!gptextqp} _ner_organization AND apple', null, 
 'hl=true&hl.fl=tweet_text&rows=50&sort=score desc') s 
-WHERE tweets.id = s.id::int8 AND s.score > 1;
+WHERE tweets.id = s.id::int8 ORDER s.score DESC LIMIT 100;
 ;
 ```
 
@@ -148,8 +148,9 @@ from user_locations INNER JOIN usstates ON ST_Contains(usstates.geom, ST_Transfo
 INNER JOIN apple_tweets on apple_tweets.user_id=user_locations.user_id
 INNER JOIN user_influence on user_influence.user_id=user_locations.user_id
 WHERE usstates.name = 'California'
+AND total_negative_sentiment > 0.05
 GROUP BY apple_tweets.user_id
-ORDER BY page_rank DESC, total_negative_sentiment ASC
+ORDER BY page_rank DESC
 LIMIT 3;
 ```
 
