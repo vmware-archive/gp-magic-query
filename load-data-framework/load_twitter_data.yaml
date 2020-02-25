@@ -13,8 +13,44 @@ KAFKA:
      FORMAT: json
      ERROR_LIMIT: 10
    OUTPUT:
-     TABLE: tweet_data
-
+     TABLE: tweets
+     MAPPING: 
+        - NAME: id
+          EXPRESSION: (jdata->>'id')::bigint
+        - NAME: created_at
+          EXPRESSION: (jdata->>'created_at')::date
+        - NAME: coordinates
+          EXPRESSION: jdata#>'{coordinates}'
+        - NAME: tweet_text
+          EXPRESSION: jdata->>'text'
+        - NAME: full_text
+          EXPRESSION: ( jdata#>'{extended_tweet,full_text}' )::text
+        - NAME: in_reply_to_status_id
+          EXPRESSION: jdata->>'in_reply_to_status_id'
+        - NAME: in_reply_to_screen_name
+          EXPRESSION: jdata->>'in_reply_to_screen_name'
+        - NAME: user_id
+          EXPRESSION: ( jdata#>'{user,id}' )::text::bigint
+        - NAME: user_name
+          EXPRESSION: ( jdata#>'{user,name}' )::text
+        - NAME: user_location
+          EXPRESSION: ( jdata#>'{user,location}' )::text
+        - NAME: hashtags
+          EXPRESSION:  ( jdata#>'{entities,hashtags}' )
+        - NAME: user_mentions
+          EXPRESSION: ( jdata#>'{entities,user_mentions}' )
+        - NAME: quote_count
+          EXPRESSION: ( jdata->>'quote_count' )::int
+        - NAME: retweet_count
+          EXPRESSION: ( jdata->>'retweet_count' )::int
+        - NAME: favorite_count
+          EXPRESSION: ( jdata->>'favorite_count' )::int
+        - NAME: favorited
+          EXPRESSION: ( jdata->>'favorited' )::boolean
+        - NAME: possibly_sensitive
+          EXPRESSION: ( jdata->>'possibly_sensitive' )::boolean
+        - NAME: lang
+          EXPRESSION: (jdata->>'lang')::text
    COMMIT:
      MAX_ROW: 1000
      MINIMAL_INTERVAL: 5000

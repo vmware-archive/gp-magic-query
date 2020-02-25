@@ -58,7 +58,7 @@ Credits: https://www.bmc.com/blogs/working-streaming-twitter-data-using-kafka/
 sudo su - gpadmin
 ```
 
-* Create load_twitter_data_loc.yaml.  
+* Create load_twitter_data.yaml.  
 ```
 DATABASE: twitter
 USER: gpadmin
@@ -75,8 +75,44 @@ KAFKA:
      FORMAT: json
      ERROR_LIMIT: 10
    OUTPUT:
-     TABLE: tweet_data
-
+     TABLE: tweets
+     MAPPING: 
+        - NAME: id
+          EXPRESSION: (jdata->>'id')::bigint
+        - NAME: created_at
+          EXPRESSION: (jdata->>'created_at')::date
+        - NAME: coordinates
+          EXPRESSION: jdata#>'{coordinates}'
+        - NAME: tweet_text
+          EXPRESSION: jdata->>'text'
+        - NAME: full_text
+          EXPRESSION: ( jdata#>'{extended_tweet,full_text}' )::text
+        - NAME: in_reply_to_status_id
+          EXPRESSION: jdata->>'in_reply_to_status_id'
+        - NAME: in_reply_to_screen_name
+          EXPRESSION: jdata->>'in_reply_to_screen_name'
+        - NAME: user_id
+          EXPRESSION: ( jdata#>'{user,id}' )::text::bigint
+        - NAME: user_name
+          EXPRESSION: ( jdata#>'{user,name}' )::text
+        - NAME: user_location
+          EXPRESSION: ( jdata#>'{user,location}' )::text
+        - NAME: hashtags
+          EXPRESSION:  ( jdata#>'{entities,hashtags}' )
+        - NAME: user_mentions
+          EXPRESSION: ( jdata#>'{entities,user_mentions}' )
+        - NAME: quote_count
+          EXPRESSION: ( jdata->>'quote_count' )::int
+        - NAME: retweet_count
+          EXPRESSION: ( jdata->>'retweet_count' )::int
+        - NAME: favorite_count
+          EXPRESSION: ( jdata->>'favorite_count' )::int
+        - NAME: favorited
+          EXPRESSION: ( jdata->>'favorited' )::boolean
+        - NAME: possibly_sensitive
+          EXPRESSION: ( jdata->>'possibly_sensitive' )::boolean
+        - NAME: lang
+          EXPRESSION: (jdata->>'lang')::text
    COMMIT:
      MAX_ROW: 1000
      MINIMAL_INTERVAL: 5000
@@ -112,11 +148,8 @@ psql twitter
 
 create extension gpss;
 
-create table tweet_data (
-    jdata json);
-
 create table tweets(
-  id text,
+  id bigint,
   created_at date,
   coordinates json,
   tweet_text text,
@@ -124,7 +157,7 @@ create table tweets(
   in_reply_to_status_id text,
   in_reply_to_user_id text,
   in_reply_to_screen_name text,
-  user_id text,
+  user_id bigint,
   user_name text,
   user_location text,
   hashtags json ,
@@ -146,36 +179,30 @@ gpss&
 * Run gpsscli
 
 ```
-gpsscli load load_twitter_data_loc.yaml
+gpsscli load load_twitter_data.yaml
 
 ```
-* Insert into tweets.
+* Select data from tweets and see the summary statistics
 
 ```
-insert into tweets
-select (jdata->>'id')::bigint,
-(jdata->>'created_at')::date, 
-jdata#>'{coordinates}',
-jdata->>'text',
-(jdata#>'{extended_tweet,full_text}')::text,
-jdata->>'in_reply_to_status_id',
-jdata->>'in_reply_to_user_id',
-jdata->>'in_reply_to_screen_name',
-(jdata#>'{user,id}')::text::bigint,
-(jdata#>'{user,name}')::text,
-(jdata#>'{user,location}')::text,
-(jdata#>'{entities,hashtags}'),
-(jdata#>'{entities,user_mentions}'),
-(jdata->>'quote_count')::int,
-(jdata->>'reply_count')::int,
-(jdata->>'retweet_count')::int,
-(jdata->>'favorite_count')::int,
-(jdata->>'favorited')::boolean,
-(jdata->>'retweeted')::boolean,
-(jdata->>'possibly_sensitive')::boolean,
-(jdata->>'lang')::text
-from tweet_data;
+\x
+select * tweets limit 5;
+
+SELECT * FROM madlib.summary( 'tweets',
+                              'tweets_summary',
+                              'tweet_text,user_id',
+                              'user_id',
+                              TRUE,
+                              TRUE,
+                              NULL,
+                              5,
+                              FALSE
+                            );
+
+SELECT * FROM tweets_summary;
+
 ```
+
 
 # Troubleshooting
 
